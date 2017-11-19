@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import './Switcher.css';
 
 // Для работы этой компоненты нужно использовать методы React.Children.toArray
@@ -12,12 +12,40 @@ class Switcher extends Component {
         };
 
         this.handleChangeChild = this.handleChangeChild.bind(this);
-    }
+    } //constructor
 
-    handleChangeChild() {} //handleChangeChild
+    handleChangeChild(e) {
+        this.setState({
+            selectedChild: +e.target.getAttribute('data-id')
+        });
+    } //handleChangeChild
 
     render() {
-        return null;
+        const { selectedChild } = this.state;
+        const { children } = this.props;
+
+        return (
+            <div>
+                <nav>
+                    <ul className="component-list">
+                        {React.Children.map(children, (child, childIndex) => (
+                            <li
+                                className="component-list__name"
+                                key={child.type.name}
+                                data-id={childIndex}
+                                onClick={this.handleChangeChild}
+                            >
+                                {child.type.displayName || child.type.name}
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <hr />
+                <div className="component-wrapper">
+                    {React.Children.toArray(children)[selectedChild]}
+                </div>
+            </div>
+        );
     }
 }
 

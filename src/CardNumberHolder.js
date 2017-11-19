@@ -11,6 +11,8 @@ class CardNumberHolder extends Component {
         this.handleChange = this.handleChange.bind(this);
     } //constructor
 
+    static displayName = 'Card number holder';
+
     handleChange(e) {
         this.setState({ cardNumber: e.target.value });
     } //handleChange

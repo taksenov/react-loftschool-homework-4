@@ -12,6 +12,8 @@ class ModalButton extends Component {
         this.renderModal = this.renderModal.bind(this);
     } // constructor
 
+    static displayName = 'Modal Button';
+
     hideModal() {
         this.setState({
             isModalShow: false
