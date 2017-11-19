@@ -13,12 +13,18 @@ class CardNumberHolder extends Component {
 
     static displayName = 'Card number holder';
 
-    handleChange(e) {
-        this.setState({ cardNumber: e.target.value });
+    handleChange(value) {
+        this.setState({ cardNumber: value });
     } //handleChange
 
     render() {
-        return <CardNumberInput onChange={this.handleChange} />;
+        const { cardNumber } = this.state;
+        return (
+            <CardNumberInput
+                onChange={this.handleChange}
+                cardNumber={cardNumber}
+            />
+        );
     }
 }
 

@@ -9,7 +9,6 @@ class ModalButton extends Component {
         };
         this.hideModal = this.hideModal.bind(this);
         this.showModal = this.showModal.bind(this);
-        // this.renderModal = this.renderModal.bind(this);
     } // constructor
 
     static displayName = 'Modal Button';
@@ -26,19 +25,15 @@ class ModalButton extends Component {
         });
     } //showModal
 
-    // renderModal() {
-    //     if ;
-    // } //renderModal
-
     render() {
         return (
             <div>
                 <button onClick={this.showModal}>Show modal window</button>
                 {this.state.isModalShow === true && (
                     <Modal>
-                        <div class="modal">
-                            <div class="modal__fog">
-                                <div class="modal__body">
+                        <div className="modal">
+                            <div className="modal__fog">
+                                <div className="modal__body">
                                     <h1>Модальное окно!</h1>
                                     <button onClick={this.hideModal}>
                                         Закрыть
