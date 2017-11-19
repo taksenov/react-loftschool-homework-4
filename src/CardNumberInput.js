@@ -16,43 +16,54 @@ class CardNumberInput extends Component {
         this.setState({ number: this.format(nextProps.cardNumber) });
     } //componentWillReceiveProps
 
-    format(normalizeString) {
-        if (!normalizeString) return '';
+    // format(normalizeString) {
+    //     if (!normalizeString) return '';
 
-        let tempString = normalizeString;
-        tempString = tempString + '';
-        tempString = tempString.trim();
+    //     let tempString = normalizeString;
+    //     tempString = tempString + '';
+    //     tempString = tempString.trim();
 
-        let formatString = '';
-        let formatSymbol = ' '; //spaceBar
-        let formatNumberGroupsOfSymbols = 4;
-        let steps = tempString.length / formatNumberGroupsOfSymbols;
-        let remainderOfDivision =
-            tempString.length % formatNumberGroupsOfSymbols;
+    //     let formatString = '';
+    //     let formatSymbol = ' '; //spaceBar
+    //     let formatNumberGroupsOfSymbols = 4;
+    //     let steps = tempString.length / formatNumberGroupsOfSymbols;
+    //     let remainderOfDivision =
+    //         tempString.length % formatNumberGroupsOfSymbols;
 
-        if (tempString.length < formatNumberGroupsOfSymbols) {
-            return (formatString = tempString);
-        }
-        for (let i = 0; i < parseInt(steps, 10); i++) {
-            formatString =
-                formatString +
-                formatSymbol +
-                tempString.slice(
-                    i * formatNumberGroupsOfSymbols,
-                    i * formatNumberGroupsOfSymbols +
-                        formatNumberGroupsOfSymbols
-                );
-        }
-        formatString = formatString.trim();
-        if (remainderOfDivision !== 0) {
-            formatString =
-                formatString +
-                formatSymbol +
-                tempString.slice(-remainderOfDivision);
-        }
+    //     if (tempString.length < formatNumberGroupsOfSymbols) {
+    //         return (formatString = tempString);
+    //     }
+    //     for (let i = 0; i < parseInt(steps, 10); i++) {
+    //         formatString =
+    //             formatString +
+    //             formatSymbol +
+    //             tempString.slice(
+    //                 i * formatNumberGroupsOfSymbols,
+    //                 i * formatNumberGroupsOfSymbols +
+    //                     formatNumberGroupsOfSymbols
+    //             );
+    //     }
+    //     formatString = formatString.trim();
+    //     if (remainderOfDivision !== 0) {
+    //         formatString =
+    //             formatString +
+    //             formatSymbol +
+    //             tempString.slice(-remainderOfDivision);
+    //     }
 
-        return formatString;
-    } //format
+    //     return formatString;
+    // } //format
+
+    format = number => {
+        if (number) {
+            var str = Number.isInteger(number) ? String(number) : number;
+            return Array.from(str)
+                .map(function(c, n) {
+                    return n % 4 || 0 === n ? c : ' ' + c;
+                })
+                .join('');
+        } else return '';
+    };
 
     normalize(number) {
         return number.replace(/\s+/g, '');
